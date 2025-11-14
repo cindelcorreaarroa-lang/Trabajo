@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎮 Mundo de Videojuegos Animado</title>
+    
+    <style>
+        /* --- Estilos Generales --- */
+        body {
+            font-family: 'Press Start 2P', cursive, sans-serif; /* Fuente pixel art o similar */
+            margin: 0;
+            padding: 0;
+            background-color: #1a1a2e; /* Fondo oscuro casi negro */
+            color: #e0e0e0;
+            overflow-x: hidden; /* Evita scroll horizontal si hay animaciones que se desbordan */
+        }
+
+        /* Fuentes personalizadas (ejemplo de Google Fonts) */
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+        /* --- 1. Menú de Navegación Animado --- */
+        .main-header {
+            background-color: rgba(0, 0, 0, 0.9);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 0 15px rgba(0, 255, 0, 0.5); /* Sombra de neón verde más intensa */
+            border-bottom: 2px solid #00ff00; /* Borde inferior neón */
+        }
+
+        .main-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 15px 20px;
+        }
+
+        .logo {
+            color: #00ff00;
+            font-size: 1.8em;
+            letter-spacing: 3px;
+            text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00; /* Efecto neón en el texto */
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: #e0e0e0;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s, transform 0.3s, text-shadow 0.3s;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #00ff00;
+            transform: scale(1.1);
+            text-shadow: 0 0 8px #00ff00;
+        }
+        
+        /* Efecto de subrayado animado en el menú */
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            display: block;
+            margin-top: 5px;
+            right: 0;
+            background: #00ff00;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+            left: 0;
+            background: #00ff00;
+        }
+
+        /* --- 2. Sección de Inicio con Fondo de Videojuego Animado --- */
+        .hero-section {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            background-color: #000; /* Fondo de respaldo */
+        }
+
+        .hero-background-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Asegura que el video cubra todo el espacio */
+            z-index: 1;
+            opacity: 0.6; /* Un poco transparente para que el texto resalte */
+        }
+
+        .hero-content {
+            position: relative; /* Asegura que esté encima del video */
+            z-index: 2;
+            background: rgba(0, 0, 0, 0.7); /* Fondo oscuro semitransparente para el texto */
+            padding: 50px;
+            border-radius: 15px;
+            animation: fadeIn 2s ease-out; /* Animación de aparición más larga */
+            box-shadow: 0 0 30px rgba(0, 255, 0, 0.7); /* Sombra intensa */
+        }
+
+        .hero-content h2 {
+            font-size: 3em;
+            color: #00ffff; /* Color neón cian */
+            text-shadow: 0 0 15px #00ffff, 0 0 25px #00ffff;
+            margin-bottom: 20px;
+        }
+
+        .hero-content p {
+            font-size: 1.2em;
+            color: #e0e0e0;
+            line-height: 1.6;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- 3. Sección de Videojuego con Decoración Interactiva y Fondo de Controles --- */
+        .game-section {
+            padding: 100px 20px;
+            max-width: 1000px;
+            margin: 60px auto;
+            border-radius: 15px;
+            box-shadow: 0 0 30px rgba(0, 150, 255, 0.7); /* Sombra de neón azul */
+            position: relative;
+            overflow: hidden;
+            background-color: #2a2a4e; /* Fondo de respaldo */
+            border: 2px solid #00aaff;
+        }
+        
+        .game-section h3 {
+            font-size: 2.5em;
+            color: #00aaff;
+            text-align: center;
+            margin-bottom: 40px;
+            text-shadow: 0 0 10px #00aaff;
+        }
+
+        /* Fondo de controles animados (GIF) */
+        .game-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* GIF de ejemplo: Controles de SNES moviéndose. Puedes buscar otros GIFs. */
+            background: url('https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExd2JpZ2tqcXB1ZXVtbWRvOW11dWFkMWZ2eDNwdGJyMzJic2F4N2VvNyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/kvrA1G8xH60Ew/giphy.gif') no-repeat center center / cover;
+            opacity: 0.2; /* Muy sutil para no distraer del texto */
+            z-index: 0;
+        }
+
+        .game-info {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+            position: relative; /* Para que el contenido esté por encima del fondo */
+            z-index: 1;
+            background: rgba(0, 0, 0, 0.6); /* Fondo para el texto */
+            padding: 30px;
+            border-radius: 10px;
+        }
+
+        .info-text {
+            flex: 1;
+            font-size: 1.1em;
+            line-height: 1.7;
+        }
+
+        .info-text p {
+            margin-bottom: 15px;
+        }
+
+        /* Estilos específicos de la decoración de Minecraft */
+        .interactive-decoration {
+            display: flex;
+            gap: 15px;
+            position: relative;
+            width: 250px;
+            height: 120px;
+            perspective: 1000px; /* Para efecto 3D más pronunciado */
+        }
+
+        .block {
+            width: 60px;
+            height: 60px;
+            border: 3px solid #000;
+            transform-style: preserve-3d;
+            transition: transform 0.6s ease-out, opacity 0.6s ease-out, box-shadow 0.3s;
+            animation: floatAndRotate 6s ease-in-out infinite alternate; /* Nueva animación */
+        }
+
+        /* Colores de los bloques de Minecraft */
+        .grass-block { background-color: #74a428; }
+        .dirt-block { background-color: #925f3c; }
+        .stone-block { background-color: #808080; }
+
+        /* Animación de flotación y rotación para los bloques */
+        @keyframes floatAndRotate {
+            0% { transform: translateY(0) rotateX(0deg) rotateY(0deg); }
+            50% { transform: translateY(-20px) rotateX(15deg) rotateY(25deg); }
+            100% { transform: translateY(0) rotateX(0deg) rotateY(0deg); }
+        }
+
+        /* Interactividad: Gira y se ilumina el bloque al pasar el mouse */
+        .block:hover {
+            transform: rotateY(90deg) rotateX(20deg) scale(1.2); /* Giro más drástico y crecimiento */
+            cursor: pointer;
+            box-shadow: 0 0 25px #ffea00; /* Sombra amarilla brillante */
+            background-color: #ffea00; /* Cambio de color más vivo */
+            z-index: 2; /* Para que aparezca por encima de otros bloques */
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            background-color: #000;
+            color: #888;
+            margin-top: 60px;
+            border-top: 1px solid #00ff00;
+        }
+    </style>
+</head>
+<body>
+    <header class="main-header">
+        <nav class="main-nav">
+            <h1 class="logo">GAMEVERSE</h1>
+            <ul class="nav-links">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#clasicos">Clásicos</a></li>
+                <li><a href="#modernos">Modernos</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="inicio" class="hero-section">
+        <video class="hero-background-video" autoplay loop muted playsinline>
+            <source src="https://assets.mixkit.co/videos/preview/mixkit-bright-light-with-blue-tint-34062-large.mp4" type="video/mp4">
+            Tu navegador no soporta el video de fondo.
+        </video>
+        <div class="hero-content">
+            <h2>Explora la **Leyenda de los Videojuegos**</h2>
+            <p>Un viaje interactivo a través de las consolas y franquicias que definieron la cultura digital.</p>
+        </div>
+    </section>
+
+    <section id="modernos" class="game-section minecraft-style">
+        <h3>⛏️ Minecraft: El Lienzo Infinito</h3>
+        <div class="game-info">
+            <div class="info-text">
+                <p>Lanzado en 2011, Minecraft se convirtió en un fenómeno por su libertad creativa. Es un juego de **mundo abierto** donde puedes construir lo que imagines.</p>
+                <p>Las texturas simples y la mecánica de bloques son su sello distintivo.</p>
+            </div>
+            <div class="interactive-decoration">
+                <div class="block grass-block"></div>
+                <div class="block dirt-block"></div>
+                <div class="block stone-block"></div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 GameWeb Interactive</p>
+    </footer>
+
+    <script>
+        document.querySelectorAll('.block').forEach(block => {
+            block.addEventListener('click', () => {
+                // Al hacer clic, el bloque desaparece con una animación más compleja
+                block.style.opacity = '0';
+                block.style.transform = 'translateY(-200px) scale(0) rotateX(360deg) rotateY(360deg)'; 
+                
+                console.log('Bloque destruido!');
+
+                // Opcional: Para remover el elemento del DOM después de la animación
+                setTimeout(() => {
+                    block.remove(); 
+                }, 600); // Coincide con la duración de la transición CSS
+            });
+        });
+    </script>
+</body>
+</html>
+
